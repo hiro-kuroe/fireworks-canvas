@@ -32,19 +32,19 @@ class Particle {
 
 
   draw() {
-  const r = 0.8 + (1 - t) * 1.8;
-  const t = this.life / 180; // 1 → 0
+    const t = this.life / 180; // 1 → 0
+    const r = 0.8 + (1 - t) * 1.8;
 
-  // hue: 赤(0) → オレンジ(30) → 金(45)
-  const hue = 45 - (1 - t) * 45;
+    // hue: 赤(0) → オレンジ(30) → 金(45)
+    const hue = 45 - (1 - t) * 45;
 
-  // 明るさも徐々に落とす
-  const light = 60 - (1 - t) * 30;
+    // 明るさも徐々に落とす
+    const light = 60 - (1 - t) * 30;
 
-  ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
-  ctx.beginPath();
-  ctx.arc(this.x, this.y, 1.3, 0, Math.PI * 2);
-  ctx.fill();
+    ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, 1.3, 0, Math.PI * 2);
+    ctx.fill();
 }
 
 
