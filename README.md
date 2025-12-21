@@ -1,5 +1,6 @@
 # fireworks-canvas
 
+🎆 Click or tap anywhere to launch fireworks.
 Canvas と JavaScript で作ったシンプルな花火アニメーションです。
 ※ スマートフォンでもタップ操作で動作確認済みです。
 ※ 今後FastAPIを使用した数種類のポートフォリオをアップロードしていきます。
