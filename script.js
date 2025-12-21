@@ -19,20 +19,15 @@ class Particle {
   }
 
   update() {
-    this.x += this.dx;
-    this.y += this.dy;
+  this.x += this.dx;
+  this.y += this.dy;
 
-    const age = 1 - this.life / 180;
-
-    // 後半ほど重力が強くなる
-    this.dy += 0.03 + age * 0.12;
-
-    // 空気抵抗っぽく横も減衰
-    this.dx *= 0.985;
-
-    this.life--;
+  if (this.life < 120) {
+    this.dy += 0.03;
   }
 
+  this.life--;
+}
 
 
 
@@ -43,15 +38,17 @@ class Particle {
   const hue = 45 - (1 - t) * 45;
 
   // 明るさも徐々に落とす
-  const light = 75 - (1 - t) * 35;
+  const light = 60 - (1 - t) * 30;
 
   ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
   ctx.beginPath();
-  const r = 0.8 + (1 - t) * 1.8;
-  ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
+  ctx.arc(this.x, this.y, 1.3, 0, Math.PI * 2);
   ctx.fill();
-  }
 }
+
+
+
+  }
 
 
 class Rocket {
@@ -96,13 +93,10 @@ let particles = [];
 
 
 function firework(x, y) {
-  const count = 90;
+  const count = 120;
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i;
-const speed =
-  Math.random() < 0.3
-    ? 1.5 + Math.random() * 1.5
-    : 3 + Math.random() * 2;
+    const speed = 2.5 + Math.random() * 1.2;
     particles.push(
       new Particle(x, y, angle, speed)
     );
@@ -120,19 +114,16 @@ canvas.addEventListener("touchstart", e => {
 
 
 function animate() {
-  // まず普通に“消す”
-  ctx.globalCompositeOperation = "source-over";
-  ctx.fillStyle = "rgba(0,0,0,0.18)"; // ← 0.06だと薄すぎ。まず0.18くらいに
+  ctx.fillStyle = "rgba(0,0,0,0.06)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // そのあと光を“足す”
-  ctx.globalCompositeOperation = "lighter";
 
   rockets = rockets.filter(r => !r.exploded);
   rockets.forEach(r => {
-    r.update();
-    r.draw();
+   r.update();
+   r.draw();
   });
+
 
   particles = particles.filter(p => p.life > 0);
   particles.forEach(p => {
@@ -142,7 +133,6 @@ function animate() {
 
   requestAnimationFrame(animate);
 }
-
 animate();
 
 
