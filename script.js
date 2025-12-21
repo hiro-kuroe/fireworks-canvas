@@ -10,15 +10,12 @@ resize();
 window.addEventListener("resize", resize);
 
 class Particle {
-  constructor(x, y, angle, speed, color) {
+  constructor(x, y, angle, speed) {
     this.x = x;
     this.y = y;
     this.dx = Math.cos(angle) * speed;
     this.dy = Math.sin(angle) * speed;
-    this.life = 180;    
-    this.color = color;
-    this.alpha = 0.5;
-
+    this.life = 180;  
   }
 
   update() {
@@ -26,7 +23,7 @@ class Particle {
   this.y += this.dy;
 
   if (this.life < 120) {
-    this.dy += 0.02;
+    this.dy += 0.03;
   }
 
   this.life--;
@@ -35,14 +32,20 @@ class Particle {
 
 
   draw() {
-  const a = this.life / 180;
-  ctx.fillStyle = a > 0.8 ? "light yellow" : this.color;
-  ctx.globalAlpha = a;
+  const t = this.life / 180; // 1 → 0
+
+  // hue: 赤(0) → オレンジ(30) → 金(45)
+  const hue = 45 - (1 - t) * 45;
+
+  // 明るさも徐々に落とす
+  const light = 60 - (1 - t) * 30;
+
+  ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
   ctx.beginPath();
   ctx.arc(this.x, this.y, 1.3, 0, Math.PI * 2);
   ctx.fill();
-  ctx.globalAlpha = 1;
 }
+
 
 
   }
@@ -93,9 +96,9 @@ function firework(x, y) {
   const count = 120;
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i;
-    const speed = 3 + Math.random() * 0.5;
+    const speed = 2.5 + Math.random() * 1.2;
     particles.push(
-      new Particle(x, y, angle, speed, "hsl(" + Math.random()*360 + ",100%,65%)")
+      new Particle(x, y, angle, speed)
     );
   }
 }
@@ -111,7 +114,7 @@ canvas.addEventListener("touchstart", e => {
 
 
 function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.02)";
+  ctx.fillStyle = "rgba(0,0,0,0.06)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
