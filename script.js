@@ -72,7 +72,7 @@ class Rocket {
   });
   ctx.stroke();
 }
-
+}
 
 
 let rockets = [];
@@ -121,4 +121,5 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
 
