@@ -94,7 +94,7 @@ let particles = [];
 
 
 function firework(x, y) {
-  const count = 120;
+  const count = 80;
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i;
     const speed = 2.5 + Math.random() * 1.2;
@@ -115,7 +115,7 @@ canvas.addEventListener("touchstart", e => {
 
 
 function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.06)";
+  ctx.fillStyle = "rgba(0,0,0,0.15)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
