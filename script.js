@@ -17,7 +17,7 @@ class Particle {
     this.dy = Math.sin(angle) * speed;
     this.life = 180;    
     this.color = color;
-    this.alpha = 1;
+    this.alpha = 0.5;
 
   }
 
@@ -36,7 +36,7 @@ class Particle {
 
   draw() {
   const a = this.life / 180;
-  ctx.fillStyle = a > 0.8 ? "white" : this.color;
+  ctx.fillStyle = a > 0.8 ? "yellow" : this.color;
   ctx.globalAlpha = a;
   ctx.beginPath();
   ctx.arc(this.x, this.y, 1.3, 0, Math.PI * 2);
