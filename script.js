@@ -23,7 +23,7 @@ class Particle {
   update() {
     this.x += this.dx;
     this.y += this.dy;
-    this.dy += 0.03;
+    this.dy += 0.005;
     this.life--;
   }
 
@@ -31,7 +31,7 @@ class Particle {
   draw() {
     ctx.fillStyle = this.color;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, 0.5, 0, Math.PI * 2);
+    ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
     ctx.fill();
   }
 
@@ -60,10 +60,10 @@ class Rocket {
 
   }
 
-  draw() {
-  ctx.fillStyle = this.color.replace(")", `, ${this.life / 90})`);
+ draw() {
+  ctx.fillStyle = this.color.replace(")", `, ${this.life / 180})`);
   ctx.beginPath();
-  ctx.arc(this.x, this.y, 1, 0, Math.PI * 2);
+  ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
   ctx.fill();
 }
 
@@ -74,22 +74,15 @@ let particles = [];
 
 
 function firework(x, y) {
-  const count = 180;
-  const baseSpeed = 3.2;
-
+  const count = 120;
   for (let i = 0; i < count; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const speed = baseSpeed + Math.random() * 0.3; // ほぼ同速
-    const color = "hsl(" + Math.random() * 360 + ",100%,70%)";
-
-    const p = new Particle(x, y, angle, speed, color);
-    p.life = 110;        // 寿命を揃える
-    p.alpha = 1;
-    p.gravity = 0.01;   // 重力を弱める（重要）
-    particles.push(p);
+    const angle = (Math.PI * 2 / count) * i;
+    const speed = Math.random() * 0.5;
+    particles.push(
+      new Particle(x, y, angle, speed, "hsl(" + Math.random()*360 + ",100%,65%)")
+    );
   }
 }
-
 
 canvas.addEventListener("click", e => {
   rockets.push(new Rocket(e.clientX));
@@ -117,17 +110,8 @@ function animate() {
   particles.forEach(p => {
     p.update();
     p.draw();
-  update() {
-  this.x += this.dx;
-  this.y += this.dy;
-  this.dy += this.gravity ?? 0.03;
-  this.life--;
-}
-
   });
 
   requestAnimationFrame(animate);
 }
 animate();
-
-
