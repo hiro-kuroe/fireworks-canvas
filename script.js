@@ -33,7 +33,7 @@ class Particle {
 
   draw() {
     const t = this.life / 180; // 1 → 0
-    const r = 0.05 + (1 - t) * 0.1;
+    const r = 0.01 + (1 - t) * 0.08;
 
     // hue: 赤(0) → オレンジ(30) → 金(45)
     const hue = 45 - (1 - t) * 45;
@@ -56,7 +56,7 @@ class Rocket {
   constructor(x) {
     this.x = x;
     this.y = canvas.height;
-    this.dy = -6 - Math.random() * 2;
+    this.dy = -3 - Math.random() * 1;
     this.exploded = false;
     this.trail = [];
   }
@@ -94,7 +94,7 @@ let particles = [];
 
 
 function firework(x, y) {
-  const count = 200;
+  const count = 400;
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i;
     const speed = 2.5 + Math.random() * 1.2;
