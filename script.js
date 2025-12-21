@@ -61,19 +61,12 @@ class Rocket {
   }
 
   draw() {
-    ctx.fillStyle = "white";
-    ctx.fillRect(this.x, this.y, 0.3, 10);
-    ctx.strokeStyle = "rgba(255,255,255,0.5)";
-    ctx.lineWidth = 0.5;
-    ctx.beginPath();
-    this.trail.forEach((p, i) => {
-      if (i === 0) ctx.moveTo(p.x, p.y);
-      else ctx.lineTo(p.x, p.y);
-    });
-    ctx.stroke();
+  ctx.fillStyle = this.color.replace(")", `, ${this.life / 90})`);
+  ctx.beginPath();
+  ctx.arc(this.x, this.y, 1, 0, Math.PI * 2);
+  ctx.fill();
+}
 
-      }
-    }
 
 
 let rockets = [];
@@ -81,15 +74,22 @@ let particles = [];
 
 
 function firework(x, y) {
-  const count = 120;
+  const count = 180;
+  const baseSpeed = 3.2;
+
   for (let i = 0; i < count; i++) {
-    const angle = (Math.PI * 2 / count) * i;
-    const speed = Math.random() * 4 + 2;
-    particles.push(
-      new Particle(x, y, angle, speed, "hsl(" + Math.random()*360 + ",100%,65%)")
-    );
+    const angle = Math.random() * Math.PI * 2;
+    const speed = baseSpeed + Math.random() * 0.3; // ほぼ同速
+    const color = "hsl(" + Math.random() * 360 + ",100%,70%)";
+
+    const p = new Particle(x, y, angle, speed, color);
+    p.life = 110;        // 寿命を揃える
+    p.alpha = 1;
+    p.gravity = 0.01;   // 重力を弱める（重要）
+    particles.push(p);
   }
 }
+
 
 canvas.addEventListener("click", e => {
   rockets.push(new Rocket(e.clientX));
@@ -117,9 +117,17 @@ function animate() {
   particles.forEach(p => {
     p.update();
     p.draw();
+  update() {
+  this.x += this.dx;
+  this.y += this.dy;
+  this.dy += this.gravity ?? 0.03;
+  this.life--;
+}
+
   });
 
   requestAnimationFrame(animate);
 }
 animate();
+
 
