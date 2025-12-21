@@ -33,7 +33,7 @@ class Particle {
 
   draw() {
     const t = this.life / 180; // 1 → 0
-    const r = 0.1 + (1 - t) * 0.4;
+    const r = 0.05 + (1 - t) * 0.1;
 
     // hue: 赤(0) → オレンジ(30) → 金(45)
     const hue = 45 - (1 - t) * 45;
@@ -94,7 +94,7 @@ let particles = [];
 
 
 function firework(x, y) {
-  const count = 120;
+  const count = 200;
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i;
     const speed = 2.5 + Math.random() * 1.2;
