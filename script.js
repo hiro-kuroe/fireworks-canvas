@@ -36,7 +36,7 @@ class Particle {
 
   draw() {
   const a = this.life / 180;
-  ctx.fillStyle = a > 0.8 ? "yellow" : this.color;
+  ctx.fillStyle = a > 0.8 ? "light yellow" : this.color;
   ctx.globalAlpha = a;
   ctx.beginPath();
   ctx.arc(this.x, this.y, 1.3, 0, Math.PI * 2);
