@@ -61,10 +61,16 @@ class Rocket {
   }
 
  draw() {
-  ctx.fillStyle = this.color.replace(")", `, ${this.life / 180})`);
+  ctx.fillStyle = "white";
+  ctx.fillRect(this.x, this.y, 2, 10);
+
+  ctx.strokeStyle = "rgba(255,255,255,0.5)";
   ctx.beginPath();
-  ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
-  ctx.fill();
+  this.trail.forEach((p, i) => {
+    if (i === 0) ctx.moveTo(p.x, p.y);
+    else ctx.lineTo(p.x, p.y);
+  });
+  ctx.stroke();
 }
 
 
@@ -77,7 +83,7 @@ function firework(x, y) {
   const count = 120;
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i;
-    const speed = Math.random() * 0.5;
+    const speed = 3 + Math.random() * 0.5;
     particles.push(
       new Particle(x, y, angle, speed, "hsl(" + Math.random()*360 + ",100%,65%)")
     );
@@ -115,3 +121,4 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
