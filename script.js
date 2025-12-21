@@ -19,15 +19,20 @@ class Particle {
   }
 
   update() {
-  this.x += this.dx;
-  this.y += this.dy;
+    this.x += this.dx;
+    this.y += this.dy;
 
-  if (this.life < 120) {
-    this.dy += 0.03;
+    const age = 1 - this.life / 180;
+
+    // 後半ほど重力が強くなる
+    this.dy += 0.03 + age * 0.12;
+
+    // 空気抵抗っぽく横も減衰
+    this.dx *= 0.985;
+
+    this.life--;
   }
 
-  this.life--;
-}
 
 
 
@@ -38,17 +43,15 @@ class Particle {
   const hue = 45 - (1 - t) * 45;
 
   // 明るさも徐々に落とす
-  const light = 60 - (1 - t) * 30;
+  const light = 75 - (1 - t) * 35;
 
   ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
   ctx.beginPath();
-  ctx.arc(this.x, this.y, 1.3, 0, Math.PI * 2);
+  const r = 0.8 + (1 - t) * 1.8;
+  ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
   ctx.fill();
-}
-
-
-
   }
+}
 
 
 class Rocket {
@@ -96,7 +99,10 @@ function firework(x, y) {
   const count = 120;
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i;
-    const speed = 2.5 + Math.random() * 1.2;
+const speed =
+  Math.random() < 0.3
+    ? 1.5 + Math.random() * 1.5
+    : 3 + Math.random() * 2;
     particles.push(
       new Particle(x, y, angle, speed)
     );
@@ -114,6 +120,7 @@ canvas.addEventListener("touchstart", e => {
 
 
 function animate() {
+  ctx.globalCompositeOperation = "lighter";
   ctx.fillStyle = "rgba(0,0,0,0.06)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
