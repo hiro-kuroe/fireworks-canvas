@@ -55,18 +55,21 @@ class Rocket {
   constructor(x) {
     this.x = x;
     this.y = canvas.height;
-    this.dy = -6 - Math.random() * 2;
+    this.dy = -4 - Math.random() * 2.5;
     this.exploded = false;
     this.trail = [];
+    this.explodeY = canvas.height * (0.25 + Math.random() * 0.3);
+
   }
 
   update() {
     this.y += this.dy;
     this.dy += 0.01; // 重力
-    if (this.y < canvas.height * 0.4 && !this.exploded) {
+    if (this.y < this.explodeY && !this.exploded) {
       this.exploded = true;
       firework(this.x, this.y);
     }
+
     this.trail.push({ x: this.x, y: this.y });
     if (this.trail.length > 8) this.trail.shift();
 
