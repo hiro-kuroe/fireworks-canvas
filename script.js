@@ -21,19 +21,28 @@ class Particle {
   }
 
   update() {
-    this.x += this.dx;
-    this.y += this.dy;
-    this.dy += 0.005;
-    this.life--;
+  this.x += this.dx;
+  this.y += this.dy;
+
+  if (this.life < 120) {
+    this.dy += 0.02;
   }
+
+  this.life--;
+}
+
 
 
   draw() {
-    ctx.fillStyle = this.color;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
-    ctx.fill();
-  }
+  const a = this.life / 180;
+  ctx.fillStyle = a > 0.8 ? "white" : this.color;
+  ctx.globalAlpha = a;
+  ctx.beginPath();
+  ctx.arc(this.x, this.y, 1.3, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.globalAlpha = 1;
+}
+
 
   }
 
@@ -121,5 +130,6 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
 
 
