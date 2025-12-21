@@ -32,6 +32,7 @@ class Particle {
 
 
   draw() {
+  const r = 0.8 + (1 - t) * 1.8;
   const t = this.life / 180; // 1 → 0
 
   // hue: 赤(0) → オレンジ(30) → 金(45)
