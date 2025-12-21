@@ -1,3 +1,4 @@
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -58,7 +59,7 @@ class Rocket {
 
   update() {
     this.y += this.dy;
-    this.dy += 0.05; // 重力
+    this.dy += 0.01; // 重力
     if (this.y < canvas.height * 0.4 && !this.exploded) {
       this.exploded = true;
       firework(this.x, this.y);
@@ -70,7 +71,7 @@ class Rocket {
   }
 
  draw() {
-  ctx.fillStyle = "white";
+  ctx.fillStyle = "orange";
   ctx.fillRect(this.x, this.y, 2, 10);
 
   ctx.strokeStyle = "rgba(255,255,255,0.5)";
