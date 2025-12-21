@@ -96,7 +96,7 @@ let particles = [];
 
 
 function firework(x, y) {
-  const count = 120;
+  const count = 90;
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i;
 const speed =
@@ -120,17 +120,19 @@ canvas.addEventListener("touchstart", e => {
 
 
 function animate() {
-  ctx.globalCompositeOperation = "lighter";
-  ctx.fillStyle = "rgba(0,0,0,0.06)";
+  // まず普通に“消す”
+  ctx.globalCompositeOperation = "source-over";
+  ctx.fillStyle = "rgba(0,0,0,0.18)"; // ← 0.06だと薄すぎ。まず0.18くらいに
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+  // そのあと光を“足す”
+  ctx.globalCompositeOperation = "lighter";
 
   rockets = rockets.filter(r => !r.exploded);
   rockets.forEach(r => {
-   r.update();
-   r.draw();
+    r.update();
+    r.draw();
   });
-
 
   particles = particles.filter(p => p.life > 0);
   particles.forEach(p => {
@@ -140,6 +142,7 @@ function animate() {
 
   requestAnimationFrame(animate);
 }
+
 animate();
 
 
