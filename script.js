@@ -32,6 +32,7 @@ class Particle {
 
 
   draw() {
+    if (Math.random() < 0.5) return;
     const t = this.life / 180; // 1 → 0
     const r = 0.000001 + (1 - t) * 0.000005;
 
@@ -45,7 +46,7 @@ class Particle {
     ctx.beginPath();
     ctx.arc(this.x, this.y, 1.3, 0, Math.PI * 2);
     ctx.fill();
-    if (Math.random() < 0.5) return;
+    
 
 }
 
