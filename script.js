@@ -22,9 +22,11 @@ class Particle {
   this.x += this.dx;
   this.y += this.dy;
 
-  if (this.life < 120) {
-    this.dy += 0.03;
-  }
+    if (this.life < 120) {
+      this.dy += 0.05; // 後半でストン
+    } else {
+      this.dy += 0.01; // 前半ふわっ
+    }
 
   this.life--;
 }
@@ -96,9 +98,11 @@ let particles = [];
 
 
 function firework(x, y) {
-  const count = 5000;
+  const count = 500;
   for (let i = 0; i < count; i++) {
-    const angle = (Math.PI * 2 / count) * i;
+    const angle =
+      Math.PI * 1.1 + Math.random() * Math.PI * 0.8;
+    // 上方向に集中
     const speed = 0.8 + Math.random() * 0.8;
     particles.push(
       new Particle(x, y, angle, speed)
