@@ -63,7 +63,7 @@ class Rocket {
 
   update() {
     this.y += this.dy;
-    this.dy += 0.08; // 重力
+    this.dy += 0.01; // 重力
     if (this.y < canvas.height * 0.4 && !this.exploded) {
       this.exploded = true;
       firework(this.x, this.y);
@@ -135,6 +135,7 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
 
 
 
