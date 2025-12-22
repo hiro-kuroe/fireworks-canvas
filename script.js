@@ -36,10 +36,10 @@ class Particle {
     const r = 0.0000000000001 + (1 - t) * 0.0000000000005;
 
     // hue: 赤(0) → オレンジ(30) → 金(45)
-    const hue = 20 + Math.random() * 45;
+    const hue = 30 + Math.random() * 45;
 
     // 明るさも徐々に落とす
-    const light = 60 - (1 - t) * 30;
+    const light = 60 - (1 - t) * 40;
 
     ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
     ctx.beginPath();
@@ -135,6 +135,7 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
 
 
 
