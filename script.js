@@ -34,7 +34,7 @@ class Particle {
   const t = this.life / 180; // 1 → 0
 
   // hue: 赤(0) → オレンジ(30) → 金(45)
-  const hue = 330 - (1 - t) * 30;
+  const hue = 200 + (1 - t) * 60;
 
   // 明るさも徐々に落とす
   const light = 60 - (1 - t) * 30;
