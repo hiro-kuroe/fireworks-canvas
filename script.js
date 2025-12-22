@@ -45,6 +45,8 @@ class Particle {
     ctx.beginPath();
     ctx.arc(this.x, this.y, 1.3, 0, Math.PI * 2);
     ctx.fill();
+    if (Math.random() < 0.5) return;
+
 }
 
 
