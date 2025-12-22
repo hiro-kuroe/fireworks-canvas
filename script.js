@@ -94,8 +94,9 @@ let particles = [];
 function firework(x, y) {
   const count = 5000;
   for (let i = 0; i < count; i++) {
-    const angle = (Math.PI * 2 / count) * i;
-    const speed = 1.2 + Math.random() * 1.2;
+    const baseAngle = (i * Math.PI) / 180;
+    const angle = baseAngle + (Math.random() - 0.5) * 0.15;
+    const speed = baseSpeed * (0.7 + Math.random() * 0.6);
     particles.push(
       new Particle(x, y, angle, speed)
     );
