@@ -34,13 +34,13 @@ class Particle {
   draw() {
     if (Math.random() < 0.5) return;
     const t = this.life / 180; // 1 → 0
-    const r = 0.000001 + (1 - t) * 0.000005;
+    const r = 0.0000000000001 + (1 - t) * 0.0000000000005;
 
     // hue: 赤(0) → オレンジ(30) → 金(45)
-    const hue = 20 + Math.random() * 20;
+    const hue = 30 + Math.random() * 45;
 
     // 明るさも徐々に落とす
-    const light = 60 - (1 - t) * 30;
+    const light = 60 - (1 - t) * 40;
 
     ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
     ctx.beginPath();
@@ -96,7 +96,7 @@ let particles = [];
 
 
 function firework(x, y) {
-  const count = 2000;
+  const count = 5000;
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i;
     const speed = 2.5 + Math.random() * 1.2;
@@ -137,6 +137,11 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
+
+
+
+
 
 
 
