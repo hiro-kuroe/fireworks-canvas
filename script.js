@@ -35,7 +35,7 @@ class Particle {
   const t = this.life / 240; // 1 → 0
 
   // hue: 赤(0) → オレンジ(30) → 金(45)
-  const hue = this.hue - (1 - t) * 15;
+  const hue = this.hue - (1 - t) * 5;
 
   const light = 60 - (1 - t) * 30;
   const r = 1.5 * t + 0.5;
