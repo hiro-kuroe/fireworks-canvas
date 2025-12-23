@@ -127,7 +127,7 @@ let hueOffset = 0;
 
 
 function firework(x, y) {
-  const count = 3000;
+  const count = 1500;
   const baseSpeed = 2.0;
 
   hueOffset = (hueOffset + 12) % 360; // ← 少しずつ回す
