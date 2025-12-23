@@ -42,7 +42,7 @@ class Particle {
 
   ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
   ctx.beginPath();
-  ctx.arc(this.x, this.y, 0.8, 0, Math.PI * 2);
+  ctx.arc(this.x, this.y, r, 0.8, 0, Math.PI * 2);
   ctx.fill();
 }
 
@@ -88,7 +88,6 @@ class Rocket {
     this.trail = [];
     this.explodeY =
       canvas.height * (0.2 + Math.random() * 0.25)
-      - this.dy * 20;//爆発高さを追加
   }
 
   update() {
