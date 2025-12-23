@@ -9,12 +9,13 @@ resize();
 window.addEventListener("resize", resize);
 
 class Particle {
-  constructor(x, y, angle, speed) {
+  constructor(x, y, angle, speed, hue) {
     this.x = x;
     this.y = y;
     this.dx = Math.cos(angle) * speed;
     this.dy = Math.sin(angle) * speed;
     this.life = 200;  //寿命タイマー
+    this.hue = hue;
   }
 
   update() {
@@ -34,7 +35,7 @@ class Particle {
   const t = this.life / 240; // 1 → 0
 
   // hue: 赤(0) → オレンジ(30) → 金(45)
-  const hue = 110 - (1 - t) * 30;
+  const hue = this.hue - (1 - t) * 15;
 
   const light = 60 - (1 - t) * 30;
   const r = 1.5 * t + 0.5;
@@ -129,6 +130,7 @@ let smokes = [];
 function firework(x, y) {
   const count = 2000;
   const baseSpeed = 2.0;
+  const baseHue = Math.random() * 360;
 
   // 花火粒子
   for (let i = 0; i < count; i++) {
@@ -137,7 +139,7 @@ function firework(x, y) {
     const speed = baseSpeed * (0.5 + Math.random() * 0.8);
 
     particles.push(
-      new Particle(x, y, angle, speed)
+      new Particle(x, y, angle, speed, baseHue)
     );
   }
 
