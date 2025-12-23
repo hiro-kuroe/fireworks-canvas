@@ -33,10 +33,8 @@ class Particle {
   draw() {
   const t = this.life / 240; // 1 → 0
 
-  // hue: 赤(0) → オレンジ(30) → 金(45)
   const hue = 200 - (1 - t) * 45;
 
-  // 明るさも徐々に落とす
   const light = 60 - (1 - t) * 30;
   const r = 1.5 * t + 0.5;
 
@@ -86,7 +84,7 @@ class Rocket {
   constructor(x) {
     this.x = x;
     this.y = canvas.height;
-    this.dy = -4 - Math.random() * 1.5;//ロケットのスピード
+    this.dy = -4 - Math.random() * 1.5;
     this.exploded = false;
     this.trail = [];
     this.explodeY =
@@ -95,7 +93,7 @@ class Rocket {
 
   update() {
     this.y += this.dy;
-    this.dy += 0.008; // 重力
+    this.dy += 0.008; 
     if (this.y < this.explodeY && !this.exploded) {
       this.exploded = true;
       firework(this.x, this.y);
@@ -131,7 +129,6 @@ function firework(x, y) {
   const count = 800;
   const baseSpeed = 2.0;
 
-  // ✨ 花火粒子（即）
   for (let i = 0; i < count; i++) {
     const baseAngle = (i / count) * Math.PI * 2;
     const angle = baseAngle + (Math.random() - 0.5) * 0.15;
@@ -142,7 +139,6 @@ function firework(x, y) {
     );
   }
 
-  // ☁️ 煙（遅れて出す）
   setTimeout(() => {
     for (let i = 0; i < 14; i++) {
       const r = 30 + Math.random() * 60;
@@ -155,7 +151,7 @@ function firework(x, y) {
         )
       );
     }
-  }, 80); // ← ここが「ふわぁ」の正体
+  }, 80); 
 }
 
 canvas.addEventListener("click", e => {
@@ -194,6 +190,7 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
 
 
 
