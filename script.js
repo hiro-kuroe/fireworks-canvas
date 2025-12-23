@@ -110,7 +110,7 @@ class Rocket {
 
  draw() {
   ctx.fillStyle = "white";
-  ctx.fillRect(this.x, this.y, 1, 10);
+  ctx.fillRect(this.x, this.y, 0.5, 10);
 
   ctx.strokeStyle = "rgba(255,255,255,0.5)";
   ctx.beginPath();
@@ -205,6 +205,7 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
 
 
 
