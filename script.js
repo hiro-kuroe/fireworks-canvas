@@ -34,7 +34,7 @@ class Particle {
   const t = this.life / 240; // 1 → 0
 
   // hue: 赤(0) → オレンジ(30) → 金(45)
-  const hue = 60 - (1 - t) * 60;
+  const hue = 30 - (1 - t) * 45;
 
   // 明るさも徐々に落とす
   const light = 60 - (1 - t) * 30;
@@ -122,13 +122,13 @@ let smokes = [];
 
 
 function firework(x, y) {
-  const count = 2500;//粒子数
+  const count = 5000;//粒子数
   const baseSpeed = 2.2;
   
   for (let i = 0; i < count; i++) {
     const baseAngle = (i / count) * Math.PI * 2;
     const angle = baseAngle + (Math.random() - 0.5) * 0.15;
-    const speed = baseSpeed * (0.4 + Math.random() * 0.9);
+    const speed = baseSpeed * (0.3 + Math.random() * 0.8);
 
     particles.push(
       new Particle(x, y, angle, speed)
