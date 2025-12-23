@@ -34,14 +34,14 @@ class Particle {
   const t = this.life / 240; // 1 → 0
 
   // hue: 赤(0) → オレンジ(30) → 金(45)
-  const hue = 220 - (1 - t) * 45;
+  const hue = 200 - (1 - t) * 45;
 
   // 明るさも徐々に落とす
   const light = 60 - (1 - t) * 30;
 
   ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
   ctx.beginPath();
-  ctx.arc(this.x, this.y, 0.5, 0, Math.PI * 2);
+  ctx.arc(this.x, this.y, 0.1, 0, Math.PI * 2);
   ctx.fill();
 }
 
