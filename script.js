@@ -126,10 +126,10 @@ let smokes = [];
 
 
 function firework(x, y) {
-  const count = 800;        // 粒子数（軽め）
+  const count = 800;
   const baseSpeed = 2.0;
 
-  // ✨ 花火の粒子
+  // ✨ 花火粒子（即）
   for (let i = 0; i < count; i++) {
     const baseAngle = (i / count) * Math.PI * 2;
     const angle = baseAngle + (Math.random() - 0.5) * 0.15;
@@ -140,18 +140,22 @@ function firework(x, y) {
     );
   }
 
-  // ☁️ 煙（中心を避けて広がる）
-  for (let i = 0; i < 14; i++) {
-    const r = 20 + Math.random() * 40;
-    const a = Math.random() * Math.PI * 2;
+  // ☁️ 煙（遅れて出す）
+  setTimeout(() => {
+    for (let i = 0; i < 14; i++) {
+      const r = 30 + Math.random() * 60;
+      const a = Math.random() * Math.PI * 2;
 
-    smokes.push(
-      new Smoke(
-        x + Math.cos(a) * r,
-        y + Math.sin(a) * r
-      )
-    );
-  }
+      smokes.push(
+        new Smoke(
+          x + Math.cos(a) * r,
+          y + Math.sin(a) * r
+        )
+      );
+    }
+  }, 80); // ← ここが「ふわぁ」の正体
+}
+
 
   // 🌸 連続花火（余韻）
   if (Math.random() < 0.3) {
