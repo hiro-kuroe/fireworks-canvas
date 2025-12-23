@@ -122,7 +122,7 @@ let smokes = [];
 
 
 function firework(x, y) {
-  const count = 4000;//粒子数
+  const count = 2500;//粒子数
   const baseSpeed = 2.2;
   
   for (let i = 0; i < count; i++) {
