@@ -34,7 +34,7 @@ class Particle {
   const t = this.life / 240; // 1 → 0
 
   // hue: 赤(0) → オレンジ(30) → 金(45)
-  const hue = 200 - (1 - t) * 45;
+  const hue = 100 - (1 - t) * 45;
 
   // 明るさも徐々に落とす
   const light = 60 - (1 - t) * 30;
@@ -128,10 +128,10 @@ let smokes = [];
 
 
 function firework(x, y) {
-  const count = 800;
+  const count = 2000;
   const baseSpeed = 2.0;
 
-  // ✨ 花火粒子（即）
+  // 花火粒子
   for (let i = 0; i < count; i++) {
     const baseAngle = (i / count) * Math.PI * 2;
     const angle = baseAngle + (Math.random() - 0.5) * 0.15;
@@ -142,7 +142,7 @@ function firework(x, y) {
     );
   }
 
-  // ☁️ 煙（遅れて出す）
+  // 煙（遅れて出す）
   setTimeout(() => {
     for (let i = 0; i < 14; i++) {
       const r = 30 + Math.random() * 60;
@@ -155,7 +155,7 @@ function firework(x, y) {
         )
       );
     }
-  }, 80); // ← ここが「ふわぁ」の正体
+  }, 80); 
 }
 
 canvas.addEventListener("click", e => {
