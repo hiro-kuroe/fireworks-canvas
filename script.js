@@ -42,7 +42,7 @@ class Particle {
 
   ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
   ctx.beginPath();
-  ctx.arc(this.x, this.y, 0.08, 0, Math.PI * 2);
+  ctx.arc(this.x, this.y, 0.8, 0, Math.PI * 2);
   ctx.fill();
 }
 
@@ -123,7 +123,7 @@ let smokes = [];
 
 
 function firework(x, y) {
-  const count = 3000;//粒子数
+  const count = 1000;//粒子数
   const baseSpeed = 2.0;
   
   for (let i = 0; i < count; i++) {
