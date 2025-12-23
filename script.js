@@ -14,7 +14,7 @@ class Particle {
     this.y = y;
     this.dx = Math.cos(angle) * speed;
     this.dy = Math.sin(angle) * speed;
-    this.life = 180;  
+    this.life = 240;  //寿命タイマー
   }
 
   update() {
@@ -22,7 +22,7 @@ class Particle {
   this.y += this.dy;
 
   if (this.life < 120) {
-    this.dy += 0.015;
+    this.dy += 0.008;
   }
 
   this.life--;
@@ -31,7 +31,7 @@ class Particle {
 
 
   draw() {
-  const t = this.life / 180; // 1 → 0
+  const t = this.life / 240; // 1 → 0
 
   // hue: 赤(0) → オレンジ(30) → 金(45)
   const hue = 60 - (1 - t) * 60;
@@ -49,19 +49,44 @@ class Particle {
 
   }
 
+class Smoke {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.dx = (Math.random() - 0.5) * 0.3;
+    this.dy = -Math.random() * 0.2;
+    this.life = 200;
+    this.size = 10 + Math.random() * 10;
+  }
+
+  update() {
+    this.x += this.dx;
+    this.y += this.dy;
+    this.life--;
+    this.size += 0.05;
+  }
+
+  draw() {
+    const t = this.life / 200;
+    ctx.fillStyle = `rgba(80,80,80,${t * 0.15})`;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
 
 class Rocket {
   constructor(x) {
     this.x = x;
     this.y = canvas.height;
-    this.dy = -6 - Math.random() * 2;
+    this.dy = -4 - Math.random() * 1.5;//ロケットのスピード
     this.exploded = false;
     this.trail = [];
   }
 
   update() {
     this.y += this.dy;
-    this.dy += 0.01; // 重力
+    this.dy += 0.008; // 重力
     if (this.y < canvas.height * 0.4 && !this.exploded) {
       this.exploded = true;
       firework(this.x, this.y);
@@ -89,21 +114,27 @@ class Rocket {
 
 let rockets = [];
 let particles = [];
+let smokes = [];
+
 
 
 function firework(x, y) {
   const count = 800;
-  const baseSpeed = 3.0;
+  const baseSpeed = 2.2;
   
   for (let i = 0; i < count; i++) {
     const baseAngle = (i / count) * Math.PI * 2;
     const angle = baseAngle + (Math.random() - 0.5) * 0.15;
     const speed = baseSpeed * (0.7 + Math.random() * 0.6);
-    
+
     particles.push(
       new Particle(x, y, angle, speed)
     );
   }
+  for (let i = 0; i < 20; i++) {
+    smokes.push(new Smoke(x, y));
+}
+
 }
 
 canvas.addEventListener("click", e => {
@@ -117,7 +148,7 @@ canvas.addEventListener("touchstart", e => {
 
 
 function animate() {
-  ctx.fillStyle = "rgba(0,0,0,0.06)";
+  ctx.fillStyle = "rgba(0,0,0,0.03)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
@@ -127,6 +158,11 @@ function animate() {
    r.draw();
   });
 
+  smokes = smokes.filter(s => s.life > 0);
+  smokes.forEach(s => {
+    s.update();
+    s.draw();
+  });
 
   particles = particles.filter(p => p.life > 0);
   particles.forEach(p => {
