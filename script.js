@@ -88,7 +88,7 @@ class Rocket {
   constructor(x) {
     this.x = x;
     this.y = canvas.height;
-    this.dy = -4 - Math.random() * 1.5;
+    this.dy = -3 - Math.random() * 1.2;
     this.exploded = false;
     this.trail = [];
     this.explodeY =
@@ -110,7 +110,7 @@ class Rocket {
 
  draw() {
   ctx.fillStyle = "white";
-  ctx.fillRect(this.x, this.y, 1, 10);
+  ctx.fillRect(this.x, this.y, 0.2, 10);
 
   ctx.strokeStyle = "rgba(255,255,255,0.5)";
   ctx.beginPath();
@@ -134,7 +134,7 @@ let hueOffset = 0;
 
 function firework(x, y) {
   const isMobile = canvas.width < 600;
-  const count = isMobile ? 1200 : 3000;
+  const count = isMobile ? 2000 : 3000;
 
   const baseSpeed = 2.0 * scale;
 
@@ -205,6 +205,8 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
+
 
 
 
