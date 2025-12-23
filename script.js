@@ -38,7 +38,7 @@ class Particle {
   const hue = this.hue - (1 - t) * 20;
 
   const light = 60 - (1 - t) * 30;
-  const r = (1.5 * t + 0.5) * scale;
+  const r = (0.8 * t + 0.2) * scale;//粒子の大きさ
 
 
   const alpha = 0.4 + t * 0.6;
