@@ -34,7 +34,7 @@ class Particle {
   const t = this.life / 240; // 1 → 0
 
   // hue: 赤(0) → オレンジ(30) → 金(45)
-  const hue = 100 - (1 - t) * 45;
+  const hue = 30 - (1 - t) * 30;
 
   const light = 60 - (1 - t) * 30;
   const r = 1.5 * t + 0.5;
@@ -193,7 +193,6 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
-
 
 
 
