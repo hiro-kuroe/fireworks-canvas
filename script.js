@@ -36,7 +36,6 @@ class Particle {
   // hue: 赤(0) → オレンジ(30) → 金(45)
   const hue = 100 - (1 - t) * 45;
 
-  // 明るさも徐々に落とす
   const light = 60 - (1 - t) * 30;
   const r = 1.5 * t + 0.5;
 
@@ -86,7 +85,7 @@ class Rocket {
   constructor(x) {
     this.x = x;
     this.y = canvas.height;
-    this.dy = -4 - Math.random() * 1.5;//ロケットのスピード
+    this.dy = -4 - Math.random() * 1.5;
     this.exploded = false;
     this.trail = [];
     this.explodeY =
@@ -95,7 +94,7 @@ class Rocket {
 
   update() {
     this.y += this.dy;
-    this.dy += 0.008; // 重力
+    this.dy += 0.008; 
     if (this.y < this.explodeY && !this.exploded) {
       this.exploded = true;
       firework(this.x, this.y);
@@ -194,6 +193,7 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
 
 
 

@@ -1,10 +1,15 @@
 # fireworks-canvas
 
 🎆 Click or tap anywhere to launch fireworks.
-This is my first GitHub Pages project(*｀艸´)ｳｼｼｼ.
 
-Canvas と JavaScript で作ったシンプルな花火アニメーションです。
-※ スマートフォンでもタップ操作で動作確認済みです。
+Canvas と JavaScript だけで描いた、  
+**夜空に広がるデジタル花火**です。
+
+スマートフォンでもスムーズに動作し、  
+**画面いっぱいに広がる粒子と余韻を楽しめます。**
+
+This is my first GitHub Pages project (*｀艸´)ｳｼｼｼ.
+
 
 ## Demo
 https://hiro-kuroe.github.io/fireworks-canvas/
