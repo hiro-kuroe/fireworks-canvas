@@ -122,13 +122,13 @@ let smokes = [];
 
 
 function firework(x, y) {
-  const count = 800;
+  const count = 4000;//粒子数
   const baseSpeed = 2.2;
   
   for (let i = 0; i < count; i++) {
     const baseAngle = (i / count) * Math.PI * 2;
     const angle = baseAngle + (Math.random() - 0.5) * 0.15;
-    const speed = baseSpeed * (0.7 + Math.random() * 0.6);
+    const speed = baseSpeed * (0.4 + Math.random() * 0.9);
 
     particles.push(
       new Particle(x, y, angle, speed)
@@ -136,6 +136,11 @@ function firework(x, y) {
   }
   for (let i = 0; i < 6; i++) {
     smokes.push(new Smoke(x, y));
+}
+  if (Math.random() < 0.3) {
+    setTimeout(() => {
+      firework(x, y);
+    }, 120);
 }
 
 }
