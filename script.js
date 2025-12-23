@@ -22,7 +22,7 @@ class Particle {
   this.y += this.dy;
 
   if (this.life < 120) {
-    this.dy += 0.03;
+    this.dy += 0.015;
   }
 
   this.life--;
@@ -92,11 +92,14 @@ let particles = [];
 
 
 function firework(x, y) {
-  const count = 5000;
+  const count = 800;
+  const baseSpeed = 3.0;
+  
   for (let i = 0; i < count; i++) {
-    const baseAngle = (i * Math.PI) / 180;
+    const baseAngle = (i / count) * Math.PI * 2;
     const angle = baseAngle + (Math.random() - 0.5) * 0.15;
     const speed = baseSpeed * (0.7 + Math.random() * 0.6);
+    
     particles.push(
       new Particle(x, y, angle, speed)
     );
