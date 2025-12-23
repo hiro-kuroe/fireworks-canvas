@@ -14,7 +14,7 @@ class Particle {
     this.y = y;
     this.dx = Math.cos(angle) * speed;
     this.dy = Math.sin(angle) * speed;
-    this.life = 300;  //寿命タイマー
+    this.life = 200;  //寿命タイマー
   }
 
   update() {
@@ -41,7 +41,7 @@ class Particle {
 
   ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
   ctx.beginPath();
-  ctx.arc(this.x, this.y, 0.1, 0, Math.PI * 2);
+  ctx.arc(this.x, this.y, 0.001, 0, Math.PI * 2);
   ctx.fill();
 }
 
@@ -122,7 +122,7 @@ let smokes = [];
 
 
 function firework(x, y) {
-  const count = 6000;//粒子数
+  const count = 3000;//粒子数
   const baseSpeed = 2.0;
   
   for (let i = 0; i < count; i++) {
