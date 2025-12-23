@@ -88,7 +88,7 @@ class Rocket {
   constructor(x) {
     this.x = x;
     this.y = canvas.height;
-    this.dy = -4 - Math.random() * 1.5;
+    this.dy = -3 - Math.random() * 1.2;
     this.exploded = false;
     this.trail = [];
     this.explodeY =
@@ -205,6 +205,7 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
 
 
 
