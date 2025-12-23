@@ -101,8 +101,8 @@ class Rocket {
   }
 
  draw() {
-  ctx.fillStyle = "orange";
-  ctx.fillRect(this.x, this.y, 2, 10);
+  ctx.fillStyle = "white";
+  ctx.fillRect(this.x, this.y, 1, 10);
 
   ctx.strokeStyle = "rgba(255,255,255,0.5)";
   ctx.beginPath();
