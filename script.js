@@ -42,8 +42,6 @@ class Particle {
 
   const alpha = 0.4 + t * 0.6;
   ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${alpha})`;
-
-  ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
   ctx.beginPath();
   ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
   ctx.fill();
@@ -130,8 +128,9 @@ let smokes = [];
 function firework(x, y) {
   const count = 1500;
   const baseSpeed = 2.0;
+
   const THEME_HUE = 200;//190～230
-      THEME_HUE + (Math.random() - 0.5) * 20; // ±10だけ揺らす
+  const baseHue = THEME_HUE + (Math.random() - 0.5) * 20; // ±10だけ揺らす
 
   // 花火粒子
   for (let i = 0; i < count; i++) {
