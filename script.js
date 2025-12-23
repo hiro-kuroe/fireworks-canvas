@@ -74,13 +74,14 @@ class Smoke {
 
   draw() {
     const t = this.life / 260;
-    const r = (30 + Math.random() * 60) * scale;
+    const r = this.size * scale;
 
     ctx.fillStyle = `rgba(40,40,40,${t * 0.008})`;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
     ctx.fill();
   }
+
 }
 
 
