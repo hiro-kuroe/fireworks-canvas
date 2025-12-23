@@ -123,14 +123,16 @@ let rockets = [];
 let particles = [];
 let smokes = [];
 
+let hueOffset = 0;
 
 
 function firework(x, y) {
   const count = 3000;
   const baseSpeed = 2.0;
 
+  hueOffset = (hueOffset + 12) % 360; // ← 少しずつ回す
   const THEME_HUE = 40;//190～230
-  const baseHue = THEME_HUE + (Math.random() - 0.5) * 20; // ±10だけ揺らす
+  const baseHue = THEME_HUE + hueOffset * 0.2 + (Math.random() - 0.5) * 10; // ±10だけ揺らす
 
   // 花火粒子
   for (let i = 0; i < count; i++) {
