@@ -38,11 +38,14 @@ class Particle {
 
   // 明るさも徐々に落とす
   const light = 60 - (1 - t) * 30;
-  const r = 0.8 * t;
+  const r = 1.5 * t + 0.5;
+
+  const alpha = 0.4 + t * 0.6;
+  ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${alpha})`;
 
   ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
   ctx.beginPath();
-  ctx.arc(this.x, this.y, r, 0.8, 0, Math.PI * 2);
+  ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
   ctx.fill();
 }
 
@@ -71,7 +74,7 @@ class Smoke {
 
   draw() {
     const t = this.life / 260;
-    ctx.fillStyle = `rgba(40,40,40,${t * 0.015})`;
+    ctx.fillStyle = `rgba(40,40,40,${t * 0.008})`;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
