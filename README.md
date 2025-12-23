@@ -4,6 +4,7 @@
 This is my first GitHub Pages project(*｀艸´)ｳｼｼｼ.
 
 Canvas と JavaScript で作ったシンプルな花火アニメーションです。
+
 ※ スマートフォンでもタップ操作で動作確認済みです。
 
 ## Demo
