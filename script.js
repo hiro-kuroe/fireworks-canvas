@@ -38,9 +38,11 @@ class Particle {
   const hue = this.hue - (1 - t) * 20;
 
   const light = 60 - (1 - t) * 30;
-  const r = 1.5 * t + 0.5;
+  const r = (1.5 * t + 0.5) * scale;
+
 
   const alpha = 0.4 + t * 0.6;
+
   ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${alpha})`;
   ctx.beginPath();
   ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
@@ -72,6 +74,8 @@ class Smoke {
 
   draw() {
     const t = this.life / 260;
+    const r = (30 + Math.random() * 60) * scale;
+
     ctx.fillStyle = `rgba(40,40,40,${t * 0.008})`;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -123,12 +127,16 @@ let rockets = [];
 let particles = [];
 let smokes = [];
 
+const scale = Math.min(window.innerWidth, window.innerHeight) / 800;
+
 let hueOffset = 0;
 
 
 function firework(x, y) {
-  const count = 1500;
-  const baseSpeed = 2.0;
+  const isMobile = canvas.width < 600;
+  const count = isMobile ? 800 : 1500;
+
+  const baseSpeed = 2.0 * scale;
 
   hueOffset = (hueOffset + 12) % 360; // ← 少しずつ回す
   const THEME_HUE = 40;//190～230
