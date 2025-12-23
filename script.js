@@ -126,10 +126,10 @@ let smokes = [];
 
 
 function firework(x, y) {
-  const count = 1500;
+  const count = 3000;
   const baseSpeed = 2.0;
 
-  const THEME_HUE = 200;//190～230
+  const THEME_HUE = 40;//190～230
   const baseHue = THEME_HUE + (Math.random() - 0.5) * 20; // ±10だけ揺らす
 
   // 花火粒子
