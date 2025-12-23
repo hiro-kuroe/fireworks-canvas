@@ -156,16 +156,6 @@ function firework(x, y) {
   }, 80); // ← ここが「ふわぁ」の正体
 }
 
-
-  // 🌸 連続花火（余韻）
-  if (Math.random() < 0.3) {
-    setTimeout(() => {
-      firework(x, y);
-    }, 120);
-  }
-}
-
-
 canvas.addEventListener("click", e => {
   rockets.push(new Rocket(e.clientX));
 });
