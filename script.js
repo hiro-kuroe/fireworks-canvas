@@ -82,12 +82,15 @@ class Rocket {
     this.dy = -4 - Math.random() * 1.5;//ロケットのスピード
     this.exploded = false;
     this.trail = [];
+    this.explodeY =
+      canvas.height * (0.2 + Math.random() * 0.25)
+      - this.dy * 20;//爆発高さを追加
   }
 
   update() {
     this.y += this.dy;
     this.dy += 0.008; // 重力
-    if (this.y < canvas.height * 0.4 && !this.exploded) {
+    if (this.y < this.explodeY && !this.exploded) {
       this.exploded = true;
       firework(this.x, this.y);
     }
