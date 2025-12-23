@@ -56,7 +56,7 @@ class Smoke {
     this.dx = (Math.random() - 0.5) * 0.3;
     this.dy = -Math.random() * 0.2;
     this.life = 200;
-    this.size = 10 + Math.random() * 10;
+    this.size += 0.03;
   }
 
   update() {
@@ -68,7 +68,7 @@ class Smoke {
 
   draw() {
     const t = this.life / 200;
-    ctx.fillStyle = `rgba(80,80,80,${t * 0.15})`;
+    ctx.fillStyle = `rgba(80,80,80,${t * 0.06})`;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
@@ -131,7 +131,7 @@ function firework(x, y) {
       new Particle(x, y, angle, speed)
     );
   }
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 6; i++) {
     smokes.push(new Smoke(x, y));
 }
 
