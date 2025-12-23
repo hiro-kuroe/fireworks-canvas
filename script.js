@@ -134,7 +134,7 @@ let hueOffset = 0;
 
 function firework(x, y) {
   const isMobile = canvas.width < 600;
-  const count = isMobile ? 1200 : 3000;
+  const count = isMobile ? 2000 : 3000;
 
   const baseSpeed = 2.0 * scale;
 
@@ -205,6 +205,7 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
+
 
 
 
