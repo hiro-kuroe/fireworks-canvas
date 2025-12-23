@@ -54,27 +54,30 @@ class Smoke {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.dx = (Math.random() - 0.5) * 0.3;
-    this.dy = -Math.random() * 0.2;
-    this.life = 200;
-    this.size = 1 + Math.random() * 2;
+
+    this.dx = (Math.random() - 0.5) * 0.15;
+    this.dy = -Math.random() * 0.1;
+
+    this.life = 260;
+    this.size = 10 + Math.random() * 20;
   }
 
   update() {
     this.x += this.dx;
     this.y += this.dy;
     this.life--;
-    this.size += 0.05;
+    this.size += 0.12;
   }
 
   draw() {
-    const t = this.life / 200;
-    ctx.fillStyle = `rgba(80,80,80,${t * 0.06})`;
+    const t = this.life / 260;
+    ctx.fillStyle = `rgba(40,40,40,${t * 0.015})`;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
   }
 }
+
 
 class Rocket {
   constructor(x) {
@@ -123,9 +126,10 @@ let smokes = [];
 
 
 function firework(x, y) {
-  const count = 1000;//粒子数
+  const count = 800;        // 粒子数（軽め）
   const baseSpeed = 2.0;
-  
+
+  // ✨ 花火の粒子
   for (let i = 0; i < count; i++) {
     const baseAngle = (i / count) * Math.PI * 2;
     const angle = baseAngle + (Math.random() - 0.5) * 0.15;
@@ -135,16 +139,28 @@ function firework(x, y) {
       new Particle(x, y, angle, speed)
     );
   }
-  for (let i = 0; i < 6; i++) {
-    smokes.push(new Smoke(x, y));
-}
+
+  // ☁️ 煙（中心を避けて広がる）
+  for (let i = 0; i < 14; i++) {
+    const r = 20 + Math.random() * 40;
+    const a = Math.random() * Math.PI * 2;
+
+    smokes.push(
+      new Smoke(
+        x + Math.cos(a) * r,
+        y + Math.sin(a) * r
+      )
+    );
+  }
+
+  // 🌸 連続花火（余韻）
   if (Math.random() < 0.3) {
     setTimeout(() => {
       firework(x, y);
     }, 120);
+  }
 }
 
-}
 
 canvas.addEventListener("click", e => {
   rockets.push(new Rocket(e.clientX));
