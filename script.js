@@ -38,10 +38,11 @@ class Particle {
 
   // 明るさも徐々に落とす
   const light = 60 - (1 - t) * 30;
+  const r = 0.8 * t;
 
   ctx.fillStyle = `hsla(${hue}, 100%, ${light}%, ${t})`;
   ctx.beginPath();
-  ctx.arc(this.x, this.y, 0.001, 0, Math.PI * 2);
+  ctx.arc(this.x, this.y, 0.08, 0, Math.PI * 2);
   ctx.fill();
 }
 
@@ -56,7 +57,7 @@ class Smoke {
     this.dx = (Math.random() - 0.5) * 0.3;
     this.dy = -Math.random() * 0.2;
     this.life = 200;
-    this.size += 0.03;
+    this.size = 1 + Math.random() * 2;
   }
 
   update() {
