@@ -16,7 +16,8 @@ class Particle {
     this.dy = Math.sin(angle) * speed;
     this.life = 200;  //寿命タイマー
     this.hue = hue;
-    
+    this.lightBase = 60 + Math.random() * 15;
+
   }
 
   update() {
@@ -38,7 +39,7 @@ class Particle {
   // hue: 赤(0) → オレンジ(30) → 金(45)
   const hue = this.hue - (1 - t) * 20;
 
-  const light = 80 - Math.pow(1 - t, 2) * 50;//爆心だけ光強め
+  const light = this.lightBase - (1 - t) * 30;//明るさランダム
   const r = (0.8 * t + 0.2) * scale;//粒子の大きさ
 
 
@@ -136,7 +137,7 @@ let hueOffset = 0;
 
 function firework(x, y) {
   const isMobile = canvas.width < 600;
-  const count = isMobile ? 1500 : 3000;
+  const count = isMobile ? 2000 : 3000;
 
   const baseSpeed = 2.0 * scale;
 
