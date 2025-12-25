@@ -113,7 +113,7 @@ class Rocket {
 
  draw() {
   ctx.fillStyle = "white";
-  ctx.fillRect(this.x, this.y, 0.1, 10);
+  ctx.fillRect(this.x, this.y, 0.01, 10);
 
   ctx.strokeStyle = "rgba(255,255,255,0.5)";
   ctx.beginPath();
@@ -137,7 +137,7 @@ let hueOffset = 0;
 
 function firework(x, y) {
   const isMobile = canvas.width < 600;
-  const count = isMobile ? 1800 : 2000;
+  const count = isMobile ? 2000 : 2000;
 
   const baseSpeed = 2.0 * scale;
 
