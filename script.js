@@ -14,7 +14,7 @@ class Particle {
     this.y = y;
     this.dx = Math.cos(angle) * speed;
     this.dy = Math.sin(angle) * speed;
-    this.life = 200;  //寿命タイマー
+    this.life = 250;  //寿命タイマー
     this.hue = hue;
     this.lightBase = 60 + Math.random() * 15;
 
@@ -34,7 +34,7 @@ class Particle {
 
 
   draw() {
-  const t = this.life / 200; // 1 → 0
+  const t = this.life / 250; // 1 → 0
 
   // hue: 赤(0) → オレンジ(30) → 金(45)
   const hue = this.hue - (1 - t) * 20;
