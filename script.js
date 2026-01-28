@@ -14,7 +14,7 @@ class Particle {
     this.y = y;
     this.dx = Math.cos(angle) * speed;
     this.dy = Math.sin(angle) * speed;
-    this.life = 250;  //寿命タイマー
+    this.life = 250;  
     this.hue = hue;
     this.lightBase = 60 + Math.random() * 15;
 
@@ -34,13 +34,12 @@ class Particle {
 
 
   draw() {
-  const t = this.life / 250; // 1 → 0
+  const t = this.life / 250; 
 
-  // hue: 赤(0) → オレンジ(30) → 金(45)
   const hue = this.hue - (1 - t) * 20;
 
-  const light = this.lightBase - (1 - t) * 30;//明るさランダム
-  const r = (0.8 * t + 0.2) * scale;//粒子の大きさ
+  const light = this.lightBase - (1 - t) * 30;
+  const r = (0.8 * t + 0.2) * scale;
 
 
   const alpha = 0.4 + t * 0.6;
@@ -141,11 +140,11 @@ function firework(x, y) {
 
   const baseSpeed = 2.0 * scale;
 
-  hueOffset = (hueOffset + 12) % 360; // ← 少しずつ回す
-  const THEME_HUE = 40;//190～230
-  const baseHue = THEME_HUE + hueOffset * 0.2 + (Math.random() - 0.5) * 10; // ±10だけ揺らす
+  hueOffset = (hueOffset + 12) % 360; 
+  const THEME_HUE = 40;
+  const baseHue = THEME_HUE + hueOffset * 0.2 + (Math.random() - 0.5) * 10; 
 
-  // 花火粒子
+
   for (let i = 0; i < count; i++) {
     const baseAngle = (i / count) * Math.PI * 2;
     const angle = baseAngle + (Math.random() - 0.5) * 0.15;
@@ -156,7 +155,7 @@ function firework(x, y) {
     );
   }
 
-  // 煙（遅れて出す）
+  
   setTimeout(() => {
     for (let i = 0; i < 14; i++) {
       const r = 30 + Math.random() * 60;
